@@ -163,7 +163,7 @@ pytest -q
 
 | Học viên | Git author | Module / vai trò | Commit SHA / diff chứng minh | Trình bày? |
 |---|---|---|---|---|
-| duyanh211105 (một mình) | duyanh211105 | Toàn bộ: pipeline, features, baseline, tests, report | xem `git log --author=duyanh211105` | có |
+| duyanh211105  | duyanh211105 | Toàn bộ: pipeline, features, baseline, tests, report | xem `git log --author=duyanh211105` | có |
 
 ## 11 · References
 
