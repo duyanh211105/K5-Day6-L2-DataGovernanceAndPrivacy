@@ -1,9 +1,19 @@
 # Defaults for T10 — see docs/tracks/T10.md
 # Pipeline must write out/shift_scores.csv. Freeze params BEFORE looking at eval results.
+# FROZEN 2026-11-15 by duyanh211105 before any evaluation (no GT available to the student repo).
 track: t10
 input: fixtures/t10_domain_shift
 pred_file: shift_scores.csv
 params:
   reference_batch: b0_source
-  high_risk_drop: 0.1
+  high_risk_drop: 0.1          # GT definition of high risk (evaluator side)
+  n_perm: 300                  # permutations per batch per statistic
+  w_pred: 0.6                  # weight of model-output drift (KS on pred_score)
+  w_img: 0.4                   # weight of image-descriptor drift (MMD^2)
+  z_cap: 3.0                   # model-drift z mapped to full scale (s_pred = z/z_cap, clipped to [0,1])
+  z_risk: 1.645                # pred_high_risk = model-drift z >= one-sided 95%
+  z_img_review: 3.0            # big image drift without model evidence -> REVIEW, not HOLD
+  slice_min_n: 5               # silent-slice scan: min images in slice
+  slice_unc_gap: 0.15          # ... and mean uncertainty >= reference + gap
+  budget_images: 14            # review queue = 6 batches + 14 images = 20
 eval_params: {}
